@@ -1,16 +1,19 @@
 import logo from "./logo.svg";
 import "./App.css";
+import HomePage from "./scripts/HomePage";
+import Page from "./scripts/Page";
+import Navbar from "./scripts/Navbar";
 
 import { useState } from "react";
-import { Nav, Sidenav } from "rsuite/";
 import "rsuite/dist/rsuite.min.css";
 
-import Home from "@rsuite/icons/legacy/Home";
-import FileCodeO from "@rsuite/icons/legacy/FileCodeO";
-import File from "@rsuite/icons/legacy/File";
-import { Code } from "@rsuite/icons";
-
-import { useParams } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useParams,
+  Link,
+} from "react-router-dom";
 
 function App() {
   const [expand, setExpand] = useState(true);
@@ -18,10 +21,14 @@ function App() {
   const base = "http://localhost:3000/";
   var lastActiveKey;
 
-  const { handle } = useParams();
+  var { handle } = useParams();
+  var handle_url = window.location.href.split("/")[3];
 
-  var iframe_url = "/pages/" + activeKey + ".htm";
+  // var iframe_url = "/pages/" + activeKey + ".htm";
+  var iframe_url = "/pages/" + handle_url;
+  console.log("handle_url: " + iframe_url);
 
+  // onSelect={changeURL(activeKey)}
   function changeURL(activeKey) {
     console.log(window.location.href + " : " + activeKey);
     window.location.href = base + "#" + activeKey;
@@ -34,67 +41,29 @@ function App() {
     lastActiveKey = activeKey;
     return "/pages/" + activeKey + ".htm";
   }
-
   return (
-    <div className="App">
-      <Sidenav
-        expanded={expand}
-        defaultOpenKeys={["0", "1"]}
-        className="sidenav"
-        appearance="subtle"
-      >
-        <Sidenav.Body>
-          <Sidenav.Toggle
-            expanded={expand}
-            onToggle={(expanded) => setExpand(expanded)}
-          />
-          <Nav
-            vertical
-            appearance="subtle"
-            activeKey={activeKey}
-            onSelect={setActiveKey}
-          >
-            <Nav.Item eventKey="0" icon={<Home />}>
-              Home
-            </Nav.Item>
-            <Nav.Menu
-              placement="rightStart"
-              eventKey="0"
-              title="Uniformes"
-              icon={<File />}
-            >
-              <Nav.Item eventKey="couleur" onSelect={changeURL(activeKey)}>
-                Couleur
-              </Nav.Item>
-              <Nav.Item eventKey="infanterie" onSelect={changeURL(activeKey)}>
-                Infanterie
-              </Nav.Item>
-            </Nav.Menu>
-          </Nav>
-        </Sidenav.Body>
-      </Sidenav>
-      <header className="App-header">
-        <iframe src={iframe_url}></iframe>
-        <p>
-          Expand: {expand},{setExpand}
-        </p>
-        <p>
-          activeKey: {activeKey},{setActiveKey}
-        </p>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/*
+       */}
+
+      <div className="App">
+        <Navbar base={base} />
+
+        <header className="App-header">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/:handle" element={<Page url={iframe_url} />} />
+          </Routes>
+          <p>
+            Expand: {expand},{setExpand}
+          </p>
+          <p>
+            activeKey: {activeKey},{setActiveKey}
+          </p>
+          <p>handle: {handle}</p>
+        </header>
+      </div>
+    </>
   );
 }
 
