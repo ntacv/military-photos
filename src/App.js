@@ -25,17 +25,29 @@ console.log("menu_data: " + menu_data);
 function App() {
   const [expand, setExpand] = useState(true);
   const [activeKey, setActiveKey] = useState("1");
+
   const base = "http://localhost:3000/";
   //const base = "http://military-photos.pages.dev/";
   var lastActiveKey;
 
   const { handle } = useParams();
 
+  // Get the handle from the URL
   // 0http: 1 2localhost:3000 3handle 4
   var handle_url = window.location.href.split("/")[3];
 
+  // Default page redirect
   // var iframe_url = "/pages/" + activeKey + ".htm";
   if (handle_url === null || handle_url == "" || handle_url == "pages") {
+    handle_url = "";
+  }
+  console.log("handle_url: " + handle_url);
+  // Allow iframe only for menu pages
+  var index_page = menu_data.findIndex((item) => item[0] == handle_url);
+  console.log("index_page: " + index_page + " : " + menu_data[index_page]);
+
+  if (index_page == -1) {
+    index_page = 0;
     handle_url = "";
   }
   var iframe_url = "/pages/" + handle_url;
@@ -61,12 +73,14 @@ function App() {
 
         <header className="App-header">
           <iframe src={iframe_url}></iframe>
+
           <Routes>
             <Route path="/" element={<HomePage />} />
             {/* TODO if handle = filename exist then page else navigate */}
             <Route path="/:handle" element={<Page url={iframe_url} />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
+
           <p>Expand: {expand}</p>
           <p>activeKey: {activeKey}</p>
           <p>handle: {handle}</p>
