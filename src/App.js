@@ -20,6 +20,7 @@ import {
 } from "react-router-dom";
 
 console.log("App.js");
+menu_data = menu_data.slice(1, menu_data.length);
 console.log("menu_data: " + menu_data);
 
 function App() {
@@ -38,10 +39,10 @@ function App() {
 
   // Default page redirect
   // var iframe_url = "/pages/" + activeKey + ".htm";
-  if (handle_url === null || handle_url == "" || handle_url == "pages") {
-    handle_url = "";
-  }
-  console.log("handle_url: " + handle_url);
+  // if (handle_url === null || handle_url == "" || handle_url == "pages") {
+  //   handle_url = "";
+  // }
+
   // Allow iframe only for menu pages
   var index_page = menu_data.findIndex((item) => item[0] == handle_url);
   console.log("index_page: " + index_page + " : " + menu_data[index_page]);
@@ -51,7 +52,7 @@ function App() {
     handle_url = "";
   }
   var iframe_url = "/pages/" + handle_url;
-  console.log("handle_url: " + iframe_url);
+  console.log("iframe_url: " + iframe_url);
 
   // onSelect={changeURL(activeKey)}
   function changeURL(activeKey) {
@@ -69,7 +70,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <Navbar data={menu_data} />
+        <Navbar data={menu_data} activeKey={handle_url} />
 
         <header className="App-header">
           <iframe src={iframe_url}></iframe>
