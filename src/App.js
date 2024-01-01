@@ -5,7 +5,7 @@ import Page from "./scripts/Page";
 import Navbar from "./scripts/Navbar";
 
 import menu_txt from "./scripts/menu.txt";
-import menu_data from "./scripts/menu.json";
+import menu_data_raw from "./scripts/menu.json";
 
 import { useState } from "react";
 import "rsuite/dist/rsuite.min.css";
@@ -20,7 +20,7 @@ import {
 } from "react-router-dom";
 
 console.log("App.js");
-menu_data = menu_data.slice(1, menu_data.length);
+var menu_data = menu_data_raw.slice(1, menu_data_raw.length);
 console.log("menu_data: " + menu_data);
 
 function App() {
