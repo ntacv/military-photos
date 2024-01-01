@@ -15,13 +15,18 @@ import {
   Link,
 } from "react-router-dom";
 
+console.log("App.js");
+
 function App() {
   const [expand, setExpand] = useState(true);
   const [activeKey, setActiveKey] = useState("1");
   const base = "http://localhost:3000/";
+  //const base = "http://military-photos.pages.dev/";
   var lastActiveKey;
 
-  var { handle } = useParams();
+  const { handle } = useParams();
+
+  // 0http: 1 2localhost:3000 3handle 4
   var handle_url = window.location.href.split("/")[3];
 
   // var iframe_url = "/pages/" + activeKey + ".htm";
@@ -43,9 +48,6 @@ function App() {
   }
   return (
     <>
-      {/*
-       */}
-
       <div className="App">
         <Navbar base={base} />
 
@@ -54,13 +56,10 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/:handle" element={<Page url={iframe_url} />} />
           </Routes>
-          <p>
-            Expand: {expand},{setExpand}
-          </p>
-          <p>
-            activeKey: {activeKey},{setActiveKey}
-          </p>
+          <p>Expand: {expand}</p>
+          <p>activeKey: {activeKey}</p>
           <p>handle: {handle}</p>
+          <iframe src={iframe_url}></iframe>
         </header>
       </div>
     </>

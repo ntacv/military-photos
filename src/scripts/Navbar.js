@@ -44,6 +44,11 @@ export default function Navbar({ base }) {
           <Link to="/couleur.htm">couleur</Link>
           <br></br>
           <Link to="/infanterie.htm">infanterie</Link>
+
+          <br></br>
+          <a href="../couleur.htm">a:couleur</a>
+          <br></br>
+          <a href="../infanterie.htm">a:infanterie</a>
         </Nav>
       </Sidenav.Body>
     </Sidenav>
