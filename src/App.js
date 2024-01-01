@@ -63,6 +63,7 @@ function App() {
           <iframe src={iframe_url}></iframe>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            {/* TODO if handle = filename exist then page else navigate */}
             <Route path="/:handle" element={<Page url={iframe_url} />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
