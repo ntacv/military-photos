@@ -59,6 +59,7 @@ function App() {
           <p>Expand: {expand}</p>
           <p>activeKey: {activeKey}</p>
           <p>handle: {handle}</p>
+          <p>handle_url: {handle_url}</p>
           <iframe src={iframe_url}></iframe>
         </header>
       </div>
