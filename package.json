@@ -1,6 +1,6 @@
 {
   "name": "military",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@rsuite/responsive-nav": "^5.0.1",
