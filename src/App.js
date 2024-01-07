@@ -1,8 +1,9 @@
-import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./scripts/HomePage";
 import Page from "./scripts/Page";
 import Navbar from "./scripts/Navbar";
+import NavbarCustom from "./scripts/NavbarCustom";
+import StaticHTML from "./scripts/StaticHTML";
 
 import menu_txt from "./scripts/menu.txt";
 import menu_data_raw from "./scripts/menu.json";
@@ -22,6 +23,14 @@ import {
 console.log("App.js");
 var menu_data = menu_data_raw.slice(1, menu_data_raw.length);
 console.log("menu_data: " + menu_data);
+
+function toggle_nav() {
+  console.log("toggle_nav");
+  var nav = document.getElementsByClassName("sidenav")[0];
+  nav.classList.toggle("sidenav_open");
+  var app = document.getElementsByClassName("App")[0];
+  app.classList.toggle("app_full");
+}
 
 function App() {
   const [expand, setExpand] = useState(true);
@@ -69,11 +78,17 @@ function App() {
   }
   return (
     <>
+      <div className="toggle_nav" onClick={toggle_nav}>
+        <button>Menu</button>
+      </div>
       <div className="App">
-        <Navbar data={menu_data} activeKey={handle_url} />
-
+        <div className="sidenav">
+          <NavbarCustom data={menu_data} activeKey={handle_url} />
+          {/* <Navbar data={menu_data} activeKey={handle_url} /> */}
+        </div>
         <header className="App-header">
-          <iframe src={iframe_url}></iframe>
+          {/* <StaticHTML /> */}
+          <iframe src={iframe_url} name="main_iframe"></iframe>
 
           <Routes>
             <Route path="/" element={<HomePage />} />

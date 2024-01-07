@@ -1,12 +1,26 @@
 .App {
   text-align: center;
-  display: grid;
-  grid-template-columns: 20fr 80fr;
+  display: block;
+
   
+}
+.app_full{
+    display: grid;
+      grid-template-columns: 20fr 80fr;
 }
 
 .sidenav{
   text-align: left;
+  min-width: 240px;
+  display: none;
+}
+.sidenav_open{
+  display: block;
+}
+.toggle_nav{
+  position: absolute;
+  display: flex;
+  flex-shrink: 1;
 }
 
 iframe{
