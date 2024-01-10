@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   text-align: center;
   display: block;
@@ -6,7 +10,7 @@
 }
 .app_full{
     display: grid;
-      grid-template-columns: 20fr 80fr;
+    grid-template-columns: 15fr 100fr;
 }
 
 .sidenav{

@@ -8,6 +8,16 @@ import Home from "@rsuite/icons/legacy/Home";
 import FileCodeO from "@rsuite/icons/legacy/FileCodeO";
 import File from "@rsuite/icons/legacy/File";
 import { Code } from "@rsuite/icons";
+import { Button as ButtonFlow } from "flowbite-react";
+import { Sidebar as SidebarFlow } from "flowbite-react";
+import {
+  HiArrowSmRight,
+  HiChartPie,
+  HiInbox,
+  HiShoppingBag,
+  HiTable,
+  HiUser,
+} from "react-icons/hi";
 
 export default function Navbar(props) {
   const [expand, setExpand] = useState(true);
@@ -19,7 +29,7 @@ export default function Navbar(props) {
   return (
     <div>
       <br />
-      <h2>Military photos</h2>
+      <br />
 
       <Nav
         activeKey={active}
@@ -45,6 +55,39 @@ export default function Navbar(props) {
             </Nav.Item>
           ))}
         </Nav.Menu>
+
+        <ButtonFlow>Click me</ButtonFlow>
+
+        <SidebarFlow aria-label="SidebarFlow with multi-level dropdown example">
+          <SidebarFlow.Items>
+            <SidebarFlow.ItemGroup>
+              <SidebarFlow.Item href="#" icon={HiChartPie}>
+                Dashboard
+              </SidebarFlow.Item>
+              <SidebarFlow.Collapse icon={HiShoppingBag} label="E-commerce">
+                <SidebarFlow.Item href="#">Products</SidebarFlow.Item>
+                <SidebarFlow.Item href="#">Sales</SidebarFlow.Item>
+                <SidebarFlow.Item href="#">Refunds</SidebarFlow.Item>
+                <SidebarFlow.Item href="#">Shipping</SidebarFlow.Item>
+              </SidebarFlow.Collapse>
+              <SidebarFlow.Item href="#" icon={HiInbox}>
+                Inbox
+              </SidebarFlow.Item>
+              <SidebarFlow.Item href="#" icon={HiUser}>
+                Users
+              </SidebarFlow.Item>
+              <SidebarFlow.Item href="#" icon={HiShoppingBag}>
+                Products
+              </SidebarFlow.Item>
+              <SidebarFlow.Item href="#" icon={HiArrowSmRight}>
+                Sign In
+              </SidebarFlow.Item>
+              <SidebarFlow.Item href="#" icon={HiTable}>
+                Sign Up
+              </SidebarFlow.Item>
+            </SidebarFlow.ItemGroup>
+          </SidebarFlow.Items>
+        </SidebarFlow>
       </Nav>
 
       {/* 
