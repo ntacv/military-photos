@@ -7,6 +7,7 @@ import StaticHTML from "./scripts/StaticHTML";
 
 import menu_txt from "./scripts/menu.txt";
 import menu_data_raw from "./scripts/menu.json";
+import menu_data_raw_simple from "./scripts/menu_simple.json";
 
 import { useState } from "react";
 import "rsuite/dist/rsuite.min.css";
@@ -19,13 +20,13 @@ import {
   Navigate,
   Link,
 } from "react-router-dom";
+import { Footer } from "rsuite";
 
-console.log("App.js");
 var menu_data = menu_data_raw.slice(1, menu_data_raw.length);
-console.log("menu_data: " + menu_data);
+//console.log("menu_data: " + menu_data);
 
 function toggle_nav() {
-  console.log("toggle_nav");
+  //console.log("toggle_nav");
   var nav = document.getElementsByClassName("sidenav")[0];
   nav.classList.toggle("sidenav_open");
   var app = document.getElementsByClassName("App")[0];
@@ -53,19 +54,31 @@ function App() {
   // }
 
   // Allow iframe only for menu pages
-  var index_page = menu_data.findIndex((item) => item[0] == handle_url);
+  /*var index_page = menu_data.findIndex((item) => item[0] == handle_url);
   console.log("index_page: " + index_page + " : " + menu_data[index_page]);
+  index_page = 1;
+  */
+  var index_page = -1;
 
+  Object.entries(menu_data_raw_simple).map(([key, list], i) => {
+    list.findIndex((item) => {
+      //console.log("index_url_menu: " + item[1]);
+      if (item[1] == handle_url) {
+        index_page = 1;
+      }
+    });
+  });
+  //.findIndex((item) => item[1] == handle_url);
   if (index_page == -1) {
     index_page = 0;
     handle_url = "";
   }
   var iframe_url = "/pages/" + handle_url;
-  console.log("iframe_url: " + iframe_url);
+  //console.log("iframe_url: " + iframe_url);
 
   // onSelect={changeURL(activeKey)}
   function changeURL(activeKey) {
-    console.log(window.location.href + " : " + activeKey);
+    //console.log(window.location.href + " : " + activeKey);
     window.location.href = base + "#" + activeKey;
   }
 
@@ -76,6 +89,7 @@ function App() {
     lastActiveKey = activeKey;
     return "/pages/" + activeKey + ".htm";
   }
+
   return (
     <>
       <div className="toggle_nav" onClick={toggle_nav}>
@@ -83,20 +97,28 @@ function App() {
       </div>
       <div className="App">
         <div className="sidenav">
-          <NavbarCustom data={menu_data} activeKey={handle_url} />
+          <NavbarCustom
+            data={[menu_data, menu_data_raw_simple]}
+            activeKey={handle_url}
+          />
           {/* <Navbar data={menu_data} activeKey={handle_url} /> */}
         </div>
         <header className="App-header">
           {/* <StaticHTML /> */}
-          <iframe src={iframe_url} name="main_iframe"></iframe>
-
+          <iframe
+            src={iframe_url}
+            className="main-iframe"
+            name="main_iframe"
+          ></iframe>
+          {/*
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* TODO if handle = filename exist then page else navigate */}
+            {/* TODO if handle = filename exist then page else navigate 
             <Route path="/:handle" element={<Page url={iframe_url} />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
 
+          
           <p>Expand: {expand}</p>
           <p>activeKey: {activeKey}</p>
           <p>handle: {handle}</p>
@@ -112,6 +134,10 @@ function App() {
               ))}
             </ul>
           </div>
+          */}
+          <footer>
+            <iframe src="footer.htm" />
+          </footer>
         </header>
       </div>
     </>

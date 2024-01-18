@@ -1,0 +1,68 @@
+Page d’entrée : index.htm avec le sommaire. Refaire la page en enlevant :
+•	les liens vers index-photo.html et index-photous.html (drapeaux)
+•	le pied de page (forum, webring et mesures d’audience)
+
+Structure du sommaire (N et N+1)
+La partie N est toujours affichée. Les sous parties (N+1) s’affichent qd on clique sur le mot N.
+1.	Uniformes
+•	<OPTION value=infanterie.htm>Infanterie</OPTION> 
+•	<OPTION value=cavalerie.htm>Cavalerie</OPTION> 
+•	<OPTION value=artillerie.htm>Artillerie</OPTION> 
+•	<OPTION value=genie.htm>Génie</OPTION> 
+•	<OPTION value=services.htm>Services</OPTION> 
+•	<OPTION value=brevetes.htm>Etat Major</OPTION> 
+•	<OPTION value=ecole.htm>Ecoles </OPTION> 
+•	<OPTION value=afrique.htm>Afrique du Nord</OPTION> 
+•	<OPTION value=coloniales.htm>Troupes coloniales</OPTION> 
+•	<OPTION value=marins.htm>Marine</OPTION> 
+•	<OPTION value=garde.htm>Garde Impériale</OPTION> 
+•	<OPTION value=generaux.htm>Généraux</OPTION> 
+•	<OPTION value=gendarmerie.htm>Gendarmes</OPTION> 
+•	<OPTION value=gnationale.htm>Garde nationale</OPTION>
+•	<OPTION value=cantinieres.htm>Cantinieres</OPTION>
+•	<OPTION value=uniformes.htm>Uniformologie</OPTION>
+•	<OPTION value=couleur.htm>Couleur </OPTION>
+
+2.	Campagnes
+	o	<OPTION value=salgerie.htm>Afrique</OPTION>
+	o	<OPTION value=scrimee.htm>Crimée</OPTION> 
+	o	<OPTION value=sitalie.htm>Italie</OPTION> 
+	o	<OPTION value=smexique.htm>Mexique</OPTION> 
+	o	<OPTION value=index1870.htm>1870</OPTION> 
+	o	<OPTION value=sautres.htm>Autres campagnes</OPTION> 
+	o	<OPTION value=srepublique.htm>Campagnes de la République</OPTION> 
+	o	<OPTION value=medailles.htm>Decorations</OPTION> 
+
+3.	Organisation
+•	<OPTION value=historgt.htm>historique des régiments</OPTION>
+•	<OPTION value=index-armee.htm>Organisation (1871-1914)</OPTION> 
+•	<OPTION value=index14.htm>Guerre de 14</OPTION>
+•	<OPTION value=politique.htm>Armée et politique</OPTION> 
+•	<OPTION value=armement.htm>les armes</OPTION> 
+•	<OPTION value=reportage.htm>Manœuvres</OPTION> 
+•	<OPTION value=bibliographie.htm>Bibliographie</OPTION> 
+
+4.	Biographies
+•	<OPTION value=personalites.htm>Personalités</OPTION> 
+•	<OPTION value=officiers.htm>Officiers</OPTION> 
+•	<OPTION value=parcours.htm>Heros</OPTION> 
+•	<OPTION value=anciens.htm>Les anciens</OPTION> 
+•	<OPTION value=orleans.htm>Famille d'Orléans</OPTION> 
+•	<OPTION value=blesses.htm>Blessés et tués</OPTION>
+•	<OPTION value=famille.htm>Officiers en famille</OPTION>
+
+5.	Divers
+•	<OPTION value=anglais.htm>Uniformes Etrangers</OPTION> 
+•	<OPTION value=histohld.htm>Highlanders</OPTION> 
+•	<OPTION value=zouaves-P-index.htm>Zouaves pontificaux</OPTION> 
+•	<OPTION value=groupe.htm>Groupes</OPTION> 
+•	<OPTION value=dag.htm>Daguerréotypes</OPTION>
+•	<OPTION value=poses.htm>Poses et attitude</OPTION>
+•	<OPTION value=insolites.htm>Insolite</OPTION>
+•	 <OPTION value=inconnus.htm>Aidez moi</OPTION> 
+•	<OPTION value=echanges.htm>Echanges</OPTION>
+•	<OPTION value=links.htm>Liens / Links</OPTION>
+
+Suppression des pages index-photous.html et index-photo.html
+Les liens qui y mènent dans les autres pages sont orphelins et pointent automatiquement sur index.html
+

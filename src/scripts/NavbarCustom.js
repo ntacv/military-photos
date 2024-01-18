@@ -8,7 +8,11 @@ import Home from "@rsuite/icons/legacy/Home";
 import FileCodeO from "@rsuite/icons/legacy/FileCodeO";
 import File from "@rsuite/icons/legacy/File";
 import { Code } from "@rsuite/icons";
-import { Button as ButtonFlow } from "flowbite-react";
+import {
+  Button as ButtonFlow,
+  SidebarCollapse,
+  SidebarItemGroup,
+} from "flowbite-react";
 import { Sidebar as SidebarFlow } from "flowbite-react";
 import {
   HiArrowSmRight,
@@ -24,13 +28,60 @@ export default function Navbar(props) {
   const [active, setActive] = useState(null);
   const [activeKey, setActiveKey] = useState("1");
 
-  var menu_data = props.data;
+  var menu_data = props.data[0];
+  var menu_data_simple = props.data[1];
+  //console.log("menu data simple " + menu_data_simple["Uniforme"][0][1]);
 
   return (
     <div>
       <br />
       <br />
+      <SidebarFlow>
+        <SidebarItemGroup>
+          <SidebarFlow.Item href="/">Accueil</SidebarFlow.Item>
+        </SidebarItemGroup>
+      </SidebarFlow>
+      <Nav
+        activeKey={active}
+        onSelect={setActive}
+        vertical
+        reversed
+        appearance="subtle"
+      >
+        {Object.entries(menu_data_simple).map(([key, list], i) => (
+          <Nav.Menu
+            placement="rightStart"
+            eventKey="0"
+            title={key}
+            icon={<File />}
+          >
+            {list.map((item) => (
+              <Nav.Item eventKey={item[1]}>
+                <a href={item[1]}>{item[0]}</a>
+              </Nav.Item>
+            ))}
+          </Nav.Menu>
+        ))}
+      </Nav>
 
+      <SidebarFlow
+        className="w-50"
+        aria-label="SidebarFlow with multi-level dropdown example"
+      >
+        <SidebarFlow.ItemGroup>
+          {Object.entries(menu_data_simple).map(([key, list], i) => (
+            <SidebarFlow.Collapse icon="" label={key}>
+              {list.map((item) => (
+                <SidebarFlow.Item href={item[1]}>{item[0]}</SidebarFlow.Item>
+              ))}
+            </SidebarFlow.Collapse>
+          ))}
+        </SidebarFlow.ItemGroup>
+      </SidebarFlow>
+
+      {/* 
+
+      
       <Nav
         activeKey={active}
         onSelect={setActive}
@@ -58,39 +109,6 @@ export default function Navbar(props) {
 
         <ButtonFlow>Click me</ButtonFlow>
 
-        <SidebarFlow aria-label="SidebarFlow with multi-level dropdown example">
-          <SidebarFlow.Items>
-            <SidebarFlow.ItemGroup>
-              <SidebarFlow.Item href="#" icon={HiChartPie}>
-                Dashboard
-              </SidebarFlow.Item>
-              <SidebarFlow.Collapse icon={HiShoppingBag} label="E-commerce">
-                <SidebarFlow.Item href="#">Products</SidebarFlow.Item>
-                <SidebarFlow.Item href="#">Sales</SidebarFlow.Item>
-                <SidebarFlow.Item href="#">Refunds</SidebarFlow.Item>
-                <SidebarFlow.Item href="#">Shipping</SidebarFlow.Item>
-              </SidebarFlow.Collapse>
-              <SidebarFlow.Item href="#" icon={HiInbox}>
-                Inbox
-              </SidebarFlow.Item>
-              <SidebarFlow.Item href="#" icon={HiUser}>
-                Users
-              </SidebarFlow.Item>
-              <SidebarFlow.Item href="#" icon={HiShoppingBag}>
-                Products
-              </SidebarFlow.Item>
-              <SidebarFlow.Item href="#" icon={HiArrowSmRight}>
-                Sign In
-              </SidebarFlow.Item>
-              <SidebarFlow.Item href="#" icon={HiTable}>
-                Sign Up
-              </SidebarFlow.Item>
-            </SidebarFlow.ItemGroup>
-          </SidebarFlow.Items>
-        </SidebarFlow>
-      </Nav>
-
-      {/* 
 
         <menu>
           {menu_data.map((item) => (

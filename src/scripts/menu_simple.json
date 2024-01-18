@@ -1,0 +1,26 @@
+{
+  "Uniforme": [
+    ["Infanterie", "infanterie.htm"],
+    ["Cavalerie", "cavalerie.htm"],
+    ["Artillerie", "artillerie.htm"],
+    ["Génie", "genie.htm"],
+    ["Services", "services.htm"]
+  ],
+  "Campagnes": [
+    ["Afrique", "salgerie.html"],
+    ["Crimée", "scrimee.htm"],
+    ["Italie", "sitalie.htm"],
+    ["Mexique", "smexique.htm"],
+    ["1870", "index1870.htm"]
+  ],
+  "Organisation": [
+    ["Historique", "historgt.htm"],
+    ["Organisation", "index-armee.htm"]
+  ],
+  "Biographies": [["Personalités", "personalites.htm"]],
+  "Divers": [
+    ["Uniformes étrangers", "uniformesetrangers.htm"],
+    ["Highlanders", "histohld.htm"]
+  ],
+  "NonRepertorie": [["Footer", "footer.htm"]]
+}
