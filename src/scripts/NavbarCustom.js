@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Nav, Sidenav, Tree } from "rsuite/";
 import "rsuite/dist/rsuite.min.css";
 import "rsuite/dist/rsuite.css";
-import { Link, useParams } from "react-router-dom";
 
 import Home from "@rsuite/icons/legacy/Home";
 import FileCodeO from "@rsuite/icons/legacy/FileCodeO";
@@ -14,22 +13,41 @@ import {
   SidebarItemGroup,
 } from "flowbite-react";
 import { Sidebar as SidebarFlow } from "flowbite-react";
-import {
-  HiArrowSmRight,
-  HiChartPie,
-  HiInbox,
-  HiShoppingBag,
-  HiTable,
-  HiUser,
-} from "react-icons/hi";
+import { set } from "rsuite/esm/utils/dateUtils";
 
 export default function Navbar(props) {
   const [expand, setExpand] = useState(true);
   const [active, setActive] = useState(null);
   const [activeKey, setActiveKey] = useState("1");
 
+  const [menu_list, setMenuList] = useState({});
+
   var menu_data = props.data[0];
   var menu_data_simple = props.data[1];
+  {
+    /* 
+  Object.entries(menu_data_simple).map(([key, list], i) => {
+    if (key != "NonRepertorie") {
+      setMenuList((menu_list) => ({
+        ...menu_list,
+        title: key,
+        children: list.map((item) => ({
+          element: item[0],
+          href: item[1],
+        })),
+      }));
+    }
+  });
+*/
+  }
+  console.log("menu_list: " + Object.keys(menu_list));
+
+  console.log("menu_data_simple: " + Object.keys(menu_data_simple));
+
+  // var menu_data_simple = menu_data_simple_raw.slice(
+  //   0,
+  //   menu_data_simple_raw.length
+  // );
   //console.log("menu data simple " + menu_data_simple["Uniforme"][0][1]);
 
   return (
@@ -53,7 +71,7 @@ export default function Navbar(props) {
             placement="rightStart"
             eventKey="0"
             title={key}
-            icon={<File />}
+            style={{ display: key === "NonRepertorie" ? "none" : "block" }}
           >
             {list.map((item) => (
               <Nav.Item eventKey={item[1]}>
@@ -64,6 +82,25 @@ export default function Navbar(props) {
         ))}
       </Nav>
 
+      <Nav
+        activeKey={active}
+        onSelect={setActive}
+        vertical
+        reversed
+        appearance="subtle"
+      >
+        {/*
+        <Nav.Menu placement="rightStart" eventKey="0" title={menu_list.title}>
+          Object.entries(menu_list).map((item) => (
+            <Nav.Item eventKey={item.href}>
+              <a href={menu_list.href}>{item.element}</a>
+            </Nav.Item>
+            )) 
+        </Nav.Menu>
+        */}
+      </Nav>
+
+      {/* 
       <SidebarFlow
         className="w-50"
         aria-label="SidebarFlow with multi-level dropdown example"
@@ -79,7 +116,6 @@ export default function Navbar(props) {
         </SidebarFlow.ItemGroup>
       </SidebarFlow>
 
-      {/* 
 
       
       <Nav

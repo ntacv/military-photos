@@ -1,15 +1,11 @@
 import "./App.css";
-import HomePage from "./scripts/HomePage";
-import Page from "./scripts/Page";
-import Navbar from "./scripts/Navbar";
 import NavbarCustom from "./scripts/NavbarCustom";
 import StaticHTML from "./scripts/StaticHTML";
 
-import menu_txt from "./scripts/menu.txt";
 import menu_data_raw from "./scripts/menu.json";
 import menu_data_raw_simple from "./scripts/menu_simple.json";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "rsuite/dist/rsuite.min.css";
 
 import {
@@ -21,6 +17,7 @@ import {
   Link,
 } from "react-router-dom";
 import { Footer } from "rsuite";
+import { set } from "rsuite/esm/utils/dateUtils";
 
 var menu_data = menu_data_raw.slice(1, menu_data_raw.length);
 //console.log("menu_data: " + menu_data);
@@ -36,6 +33,7 @@ function toggle_nav() {
 function App() {
   const [expand, setExpand] = useState(true);
   const [activeKey, setActiveKey] = useState("1");
+  const [menu_button, setMenuButton] = useState(true);
 
   const base = "http://localhost:3000/";
   //const base = "http://military-photos.pages.dev/";
@@ -74,7 +72,12 @@ function App() {
     handle_url = "";
   }
   var iframe_url = "/pages/" + handle_url;
-  //console.log("iframe_url: " + iframe_url);
+  console.log("iframe_url: " + iframe_url);
+  useEffect(() => {
+    if (handle_url == "couleur.htm") {
+      setMenuButton(false);
+    }
+  });
 
   // onSelect={changeURL(activeKey)}
   function changeURL(activeKey) {
@@ -92,7 +95,11 @@ function App() {
 
   return (
     <>
-      <div className="toggle_nav" onClick={toggle_nav}>
+      <div
+        className="toggle_nav"
+        onClick={toggle_nav}
+        style={{ display: menu_button ? "block" : "none" }}
+      >
         <button>Menu</button>
       </div>
       <div className="App">
@@ -100,6 +107,7 @@ function App() {
           <NavbarCustom
             data={[menu_data, menu_data_raw_simple]}
             activeKey={handle_url}
+            menu_button={menu_button}
           />
           {/* <Navbar data={menu_data} activeKey={handle_url} /> */}
         </div>
